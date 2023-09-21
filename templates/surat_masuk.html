@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <br>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+              <h1 class="card-title">Surat Masuk</h1>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <div style="margin-bottom: 5px;">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="1em"
+                    viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <path
+                      d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM200 344V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H248v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
+                  </svg>Tambahkan
+                </button>
+                <a href="{{ url_for('generate_pdf') }}" class="btn btn-danger" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V304H176c-35.3 0-64 28.7-64 64V512H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128zM176 352h32c30.9 0 56 25.1 56 56s-25.1 56-56 56H192v32c0 8.8-7.2 16-16 16s-16-7.2-16-16V448 368c0-8.8 7.2-16 16-16zm32 80c13.3 0 24-10.7 24-24s-10.7-24-24-24H192v48h16zm96-80h32c26.5 0 48 21.5 48 48v64c0 26.5-21.5 48-48 48H304c-8.8 0-16-7.2-16-16V368c0-8.8 7.2-16 16-16zm32 128c8.8 0 16-7.2 16-16V400c0-8.8-7.2-16-16-16H320v96h16zm80-112c0-8.8 7.2-16 16-16h48c8.8 0 16 7.2 16 16s-7.2 16-16 16H448v32h32c8.8 0 16 7.2 16 16s-7.2 16-16 16H448v48c0 8.8-7.2 16-16 16s-16-7.2-16-16V432 368z"/></svg>Eksport PDF</a>
+
+              </div>
+              
+
+              <table class="table table-bordered text-center">
+                <thead>
+                  <tr>
+                    <th>No.</th>
+                    <th>Asal Surat</th>
+                    <th>No Surat</th>
+                    <th>Kode Wilayah</th>
+                    <th>Tanggal Surat</th>
+                    <th>Tanggal Diterima</th>
+                    <th>Perihal</th>
+                    <th>File</th>
+                    <th>Keterangan</th>
+                    <th>Aksi</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for data in datas %}
+                  <tr>
+                    <td>{{ data.id }}</td>
+                    <td>{{ data.asal_surat }}</td>
+                    <td>{{ data.no_surat }}</td>
+                    <td>{{ data.kode_wilayah }}</td>
+                    <td>{{ data.tanggal_surat }}</td>
+                    <td>{{ data.tanggal_diterima }}</td>
+                    <td>{{ data.perihal }}</td>
+                    <td>{{ data.file }}</td>
+                    <td>{{ data.keterangan }}</td>
+                    <td>
+                      <button type="button" class="btn "><a
+                        href="{{ url_for('edit', data_id=data.id) }}"><svg xmlns="http://www.w3.org/2000/svg"
+                        height="1em"
+                        viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <path
+                          d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
+                      </svg></button>
+                      <button type="button" class="btn "><a
+                          href="{{ url_for('delete', data_id=data.id) }}"><svg xmlns="http://www.w3.org/2000/svg"
+                            height="1em"
+                            viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path
+                              d="M135.2 17.7L128 32H32C14.3 32 0 46.3 0 64S14.3 96 32 96H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H320l-7.2-14.3C307.4 6.8 296.3 0 284.2 0H163.8c-12.1 0-23.2 6.8-28.6 17.7zM416 128H32L53.2 467c1.6 25.3 22.6 45 47.9 45H346.9c25.3 0 46.3-19.7 47.9-45L416 128z" />
+                          </svg></button>
+                          <button type="button" class="btn" ><a target="_blank"
+                            href="{{ url_for('download', id=data.id) }}"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M288 80c-65.2 0-118.8 29.6-159.9 67.7C89.6 183.5 63 226 49.4 256c13.6 30 40.2 72.5 78.6 108.3C169.2 402.4 222.8 432 288 432s118.8-29.6 159.9-67.7C486.4 328.5 513 286 526.6 256c-13.6-30-40.2-72.5-78.6-108.3C406.8 109.6 353.2 80 288 80zM95.4 112.6C142.5 68.8 207.2 32 288 32s145.5 36.8 192.6 80.6c46.8 43.5 78.1 95.4 93 131.1c3.3 7.9 3.3 16.7 0 24.6c-14.9 35.7-46.2 87.7-93 131.1C433.5 443.2 368.8 480 288 480s-145.5-36.8-192.6-80.6C48.6 356 17.3 304 2.5 268.3c-3.3-7.9-3.3-16.7 0-24.6C17.3 208 48.6 156 95.4 112.6zM288 336c44.2 0 80-35.8 80-80s-35.8-80-80-80c-.7 0-1.3 0-2 0c1.3 5.1 2 10.5 2 16c0 35.3-28.7 64-64 64c-5.5 0-10.9-.7-16-2c0 .7 0 1.3 0 2c0 44.2 35.8 80 80 80zm0-208a128 128 0 1 1 0 256 128 128 0 1 1 0-256z"/></svg></button>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+
+            <!-- /.card -->
+            <!-- /.row -->
+          </div>
+          <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<!-- Modal tambahkan -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Form Tambah Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="add" method="POST">
+          <div class="row">
+            <div class="col-md-6">
+              <label>Asal Surat</label>
+              <input type="text" name="asal_surat" class="form-control" placeholder="">
+            </div>
+            <div class="col-md-6">
+              <label>No Surat</label>
+              <input type="text" name="no_surat" class="form-control" placeholder="">
+            </div>
+            <div class="col-md-6">
+              <label>Kode Wilayah</label>
+              <input type="text" name="kode_wilayah" class="form-control" placeholder="">
+            </div>
+            <div class="col-md-6">
+              <label>Tanggal Surat</label>
+              <input type="date" name="tanggal_surat" class="form-control" placeholder="">
+            </div>
+            <div  class="col-md-6">
+              <label>Tanggal Diterima</label>
+              <input type="date" name="tanggal_diterima" class="form-control" placeholder="">
+            </div>
+            <div class="col-md-6">
+              <label>Perihal</label>
+              <input type="text" name="perihal" class="form-control" placeholder="">
+            </div>
+  
+            <div class="col-md-6">
+              <label>Keterangan</label>
+              <select name="keterangan" id="bagian"  class="form-control">
+                <option value="pelayanan publik">pelayanan publik</option>
+                <option value="sub bagian perencanaan">sub bagian perencanaan</option>
+                <option value="bendahara">bendahara</option>
+                <option value="sub bagian ketertiban">sub bagian ketertiban</option>
+                <option value="sub bagian pemerintah">sub bagian pemerintah</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label>File</label>
+              <input type="file" name="file" class="form-control" placeholder="">
+            </div>            
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
+      </div>
+    </div>
+    </form>
+  </div>
+</div>
+</div>
+<!--end modal-->
+
+
+
+{% endblock content %}

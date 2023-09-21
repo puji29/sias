@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Form Edit</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Surat Masuk</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Surat Masuk</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <form action="{{ url_for('edit_sk', id=list.id)}}" method="POST">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>No Surat</label>
+                                        <input type="text" name="no_surat" value="{{ list.no_surat }}"
+                                            class="form-control" placeholder="">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Tanggal Dibuat</label>
+                                        <input type="date" name="tanggal_dibuat" value="{{ list.tanggal_dibuat }}"
+                                            class="form-control" placeholder="">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Jenis Surat</label>
+                                        <select name="jenis_surat" id="" class="form-control">
+                                            <option value="surat pernyataan" {% if list.jenis_surat == 'surat pernyataan' %} selected {% endif %}>Surat Pernyataan</option>
+                                            <option value="surat ahli waris" {% if list.jenis_surat == 'surat ahli waris' %} selected {% endif %}>Surat Ahli Waris</option>
+                                            <option value="surat keterangan tidak mampu" {% if list.jenis_surat == 'surat keterangan tidak mampu' %} selected {% endif %}>Surat Keterangan Tidak Mampu</option>
+                                            <option value="surat keterangan pernikahan" {% if  list.jenis_surat== 'surat keterangan pernikahan' %} selected {% endif %}>Surat Keterangan Pernikahan </option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Ditunjukan Kepada</label>
+                                        <input type="text" name="ditujukan" value="{{ list.ditujukan }}"
+                                            class="form-control" placeholder="">
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Perihal</label>
+                                        <textarea name="perihal" id="blala" cols="30" rows="10" class="form-control" ></textarea>
+                                        
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Input Berkas</label>
+                                        <input type="file" name="file" value="{{ list.file }}"
+                                            class="form-control-file" placeholder="">
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </div>
+                    </form>
+
+                </div>
+
+                <!-- /.card -->
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+
+{% endblock content %}

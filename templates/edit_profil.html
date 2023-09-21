@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Form Edit</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Edit Profil</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Edit Profil</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <form action="{{ url_for('edit3', id=ul.id)}}" method="POST">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Foto Profil</label>
+                                        <input type="file" name="foto" value="{{ ul.foto }}"
+                                            class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Username</label>
+                                        <input type="text" name="username" value="{{ ul.username}}"
+                                            class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Jabatan</label>
+                                        <input type="text" name="jabatan" value="{{ ul.jabatan}}"
+                                            class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Password</label>
+                                        <input type="Password" name="password" value="{{ ul.password }}"
+                                            class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Email</label>
+                                        <input type="Email" name="email" value="{{ ul.email }}"
+                                            class="form-control" placeholder="">
+                                    </div>
+                                    
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </div>
+                    </form>
+
+                </div>
+
+                <!-- /.card -->
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+
+{% endblock content %}

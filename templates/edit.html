@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Form Edit</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Surat Masuk</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Surat Masuk</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <form action="{{ url_for('edit', data_id=data.id)}}" method="POST">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Asal Surat</label>
+                                        <input type="text" name="asal_surat" value="{{ data.asal_surat }}"
+                                            class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>No Surat</label>
+                                        <input type="text" name="no_surat" value="{{ data.no_surat }}"
+                                            class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Kode Wilayah</label>
+                                        <input type="text" name="kode_wilayah" value="{{ data.kode_wilayah }}"
+                                            class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Tanggal Surat</label>
+                                        <input type="date" name="tanggal_surat" value="{{ data.tanggal_surat }}"
+                                            class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Tanggal Diterima</label>
+                                        <input type="date" name="tanggal_diterima" value="{{ data.tanggal_diterima }}"
+                                            class="form-control" placeholder="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Perihal</label>
+                                        <input type="text" name="perihal" value="{{ data.perihal}}" class="form-control"
+                                            placeholder="">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Keterangan</label>
+                                        <select name="keterangan" id=""  class="form-control">
+                                            <option value="pelayanan publik" {% if data.bagian == 'pelayanan publik' %} selected {% endif %}>pelayanan publik</option>
+                                            <option value="sub bagian perencanaan" {% if data.bagian == 'sub bagian perencanaan' %} selected {% endif %}>sub bagian perencanaan</option>
+                                            <option value="bendahara" {% if data.bagian == 'bendahara' %} selected {% endif %}>bendahara</option>
+                                            <option value="sub bagian ketertiban" {% if data.bagian == 'sub bagian ketertiban' %} selected {% endif %}>sub bagian ketertiban</option>
+                                            <option value="sub bagian pemerintah" {% if data.bagian == 'sub bagian pemerintah' %} selected {% endif %}>sub bagian pemerintah</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label>Input Berkas</label>
+                                        <input type="file" name="file" value="{{ data. file }}"
+                                            class="form-control-file" placeholder="">
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                    </div>
+                    </form>
+
+                </div>
+
+                <!-- /.card -->
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+
+{% endblock content %}

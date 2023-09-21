@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Profile</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">User Profile</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+
+            <!-- Profile Image -->
+            <div class="card card-primary card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                  <img class="profile-user-img img-fluid img-circle"
+                       src="{{ url_for('static', filename='dist/img/user4-128x128.jpg')}}"
+                       alt="User profile picture">
+                </div>
+                {% for user in User %}
+                <h3 class="profile-username text-center">{{ user.username }}</h3>
+
+                <p class="text-muted text-center">{{ user.jabatan }}</p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b>Email</b> <a class="float-right">{{ user.email }}</a>
+                  </li>
+                  
+                  <li class="list-group-item">
+                    <b>Password</b> <a class="float-right" >............</a>
+                  </li>
+                  
+                </ul>
+                
+                <a href="{{ url_for('edit3', id=user.id) }}" class="btn btn-primary btn-block"><b>Edit</b></a>
+              </div>
+                  {% endfor %}
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+            
+
+<!--end modal-->
+           
+         
+          
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  {% endblock content %}
+  
